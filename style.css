@@ -1,0 +1,207 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #dbeafe, #f0f4f8);
+  min-height: 100vh;
+  padding: 30px 20px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* -------------------------- */
+/* SECCIÓN: PUNTUACIONES */
+/* -------------------------- */
+
+.score-wrapper {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.score-wrapper h2 {
+  font-size: 24px;
+  color: #111827;
+  margin-right: 30px;
+}
+
+/* Contenedor de equipos y botón */
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.score-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Estilo de cada equipo */
+.team {
+  background-color: #f3f4f6;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px 20px;
+  min-width: 110px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.team strong {
+  margin-top: 8px;
+  font-size: 20px;
+}
+
+/* Botón ingresar puntuación */
+button#openScoreModal {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transition: background 0.2s;
+}
+
+button#openScoreModal:hover {
+  background: #2563eb;
+}
+
+.icon {
+  fill: white;
+}
+
+/* -------------------------- */
+/* SECCIÓN: TABLERO */
+/* -------------------------- */
+
+.game-container {
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(7, 120px);
+  grid-template-rows: repeat(6, 80px);
+  gap: 5px;
+  background-color: #1e3a8a;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cell {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.cell:hover {
+  background-color: #2563eb;
+}
+
+.header {
+  background-color: #1d4ed8;
+}
+
+/* -------------------------- */
+/* MODALES */
+/* -------------------------- */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.hidden {
+  display: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.score-form label,
+.score-form select,
+.score-form input {
+  display: block;
+  margin-top: 12px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.add-score-btn {
+  margin-top: 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-score-btn:hover {
+  background-color: #2563eb;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jeopardy Online</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- CONTENEDOR DE PUNTUACIONES -->
+  <div class="score-wrapper">
+    <h2>Puntuaciones</h2>
+    <div class="score-row">
+      <div class="score-container" id="teams">
+        <!-- Equipos generados dinámicamente -->
+      </div>
+      <button id="openScoreModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+        Ingresar Puntuación
+      </button>
+    </div>
+  </div>
+
+  <!-- TABLERO -->
+  <div class="game-container">
+    <div class="board" id="gameBoard"></div>
+  </div>
+
+  <!-- MODAL DE PREGUNTA -->
+  <div id="questionModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-btn" id="closeQuestionModal">&times;</span>
+      <h2 id="questionText">Aquí va la pregunta</h2>
+    </div>
+  </div>
+
+  <!-- MODAL DE PUNTUACIÓN -->
+  <div id="scoreModal" class="modal hidden">
+    <div class="modal-content score-form">
+      <span class="close-btn" id="closeScoreModal">&times;</span>
+      <h3>Agregar Puntuación</h3>
+      <label for="teamSelect">Equipo:</label>
+      <select id="teamSelect">
+        <option value="0">Equipo 1</option>
+        <option value="1">Equipo 2</option>
+        <option value="2">Equipo 3</option>
+        <option value="3">Equipo 4</option>
+        <option value="4">Equipo 5</option>
+      </select>
+      <label for="pointsInput">Puntos:</label>
+      <input type="number" id="pointsInput" step="100" min="100" value="100">
+      <button id="addPointsBtn" class="add-score-btn">Agregar</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
