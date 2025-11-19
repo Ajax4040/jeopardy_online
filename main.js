@@ -1,11 +1,6 @@
 const categories = [
-  "Categoría 1",
-  "Categoría 2",
-  "Categoría 3",
-  "Categoría 4",
-  "Categoría 5",
-  "Categoría 6",
-  "Categoría 7"
+  "Categoría 1", "Categoría 2", "Categoría 3",
+  "Categoría 4", "Categoría 5", "Categoría 6", "Categoría 7"
 ];
 
 const points = [100, 200, 300, 400, 500];
@@ -13,18 +8,17 @@ const points = [100, 200, 300, 400, 500];
 const questions = {};
 categories.forEach((cat) => {
   questions[cat] = [
-    `Pregunta 1 de ${cat}`,
-    `Pregunta 2 de ${cat}`,
-    `Pregunta 3 de ${cat}`,
-    `Pregunta 4 de ${cat}`,
-    `Pregunta 5 de ${cat}`
+    `Pregunta 1 de ${cat.toUpperCase()}`,
+    `Pregunta 2 de ${cat.toUpperCase()}`,
+    `Pregunta 3 de ${cat.toUpperCase()}`,
+    `Pregunta 4 de ${cat.toUpperCase()}`,
+    `Pregunta 5 de ${cat.toUpperCase()}`
   ];
 });
 
 // Crear tablero
 const board = document.getElementById("gameBoard");
-
-categories.forEach((cat) => {
+categories.forEach(cat => {
   const header = document.createElement("div");
   header.className = "cell header";
   header.innerText = cat;
@@ -46,7 +40,6 @@ points.forEach((point, rowIndex) => {
 // Crear puntuaciones
 const teams = [0, 0, 0, 0, 0];
 const teamsContainer = document.getElementById("teams");
-
 teams.forEach((score, i) => {
   const div = document.createElement("div");
   div.className = "team";
@@ -54,10 +47,17 @@ teams.forEach((score, i) => {
   teamsContainer.appendChild(div);
 });
 
-// Pregunta Modal
+// ------------------------
+// MODAL DE PREGUNTA
+// ------------------------
+
 const questionModal = document.getElementById("questionModal");
 const questionText = document.getElementById("questionText");
 const closeQuestionModal = document.getElementById("closeQuestionModal");
+const confirmBtn = document.getElementById("confirmQuestion");
+const cancelBtn = document.getElementById("cancelQuestion");
+
+let currentCell = null; // guarda la celda activa
 
 function openQuestionModal(e) {
   const cat = e.currentTarget.dataset.category;
@@ -65,13 +65,34 @@ function openQuestionModal(e) {
   const q = questions[cat]?.[row] || "Pregunta no disponible";
   questionText.innerText = q;
   questionModal.classList.remove("hidden");
+  currentCell = e.currentTarget;
 }
 
-closeQuestionModal.addEventListener("click", () => {
+// Confirmar uso de celda
+confirmBtn.addEventListener("click", () => {
+  if (currentCell) {
+    currentCell.classList.add("used");
+    currentCell.removeEventListener("click", openQuestionModal);
+    currentCell = null;
+  }
   questionModal.classList.add("hidden");
 });
 
-// Puntuación Modal
+// Cancelar y cerrar sin afectar la celda
+cancelBtn.addEventListener("click", () => {
+  currentCell = null;
+  questionModal.classList.add("hidden");
+});
+
+closeQuestionModal.addEventListener("click", () => {
+  currentCell = null;
+  questionModal.classList.add("hidden");
+});
+
+// ------------------------
+// MODAL DE PUNTUACIÓN
+// ------------------------
+
 const scoreModal = document.getElementById("scoreModal");
 const openScoreModal = document.getElementById("openScoreModal");
 const closeScoreModal = document.getElementById("closeScoreModal");

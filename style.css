@@ -60,7 +60,7 @@ body {
 /* Estilo de cada equipo */
 .team {
   background-color: #f3f4f6;
-  border: 2px solid black;
+  border: 2px solid rgb(121, 121, 121);
   border-radius: 10px;
   padding: 10px 20px;
   min-width: 110px;
@@ -204,4 +204,49 @@ button#openScoreModal:hover {
 
 .add-score-btn:hover {
   background-color: #2563eb;
+}
+
+/* -------------------------- */
+/* MODAL DE PREGUNTA - NUEVOS BOTONES */
+/* -------------------------- */
+
+.question-box {
+  text-align: center;
+}
+
+.question-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 30px;
+}
+
+.confirm-btn,
+.cancel-btn {
+  font-size: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.confirm-btn:hover {
+  transform: scale(1.1);
+  color: green;
+}
+
+.cancel-btn:hover {
+  transform: scale(1.1);
+  color: red;
+}
+
+/* -------------------------- */
+/* CELDA USADA (GRIS) */
+/* -------------------------- */
+
+.cell.used {
+  background-color: #9ca3af !important;
+  cursor: not-allowed;
+  pointer-events: none;
+  color: white;
 }
