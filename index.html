@@ -34,10 +34,17 @@
     <div class="modal-content question-box">
       <span class="close-btn" id="closeQuestionModal">&times;</span>
       <h2 id="questionText">Aquí va la pregunta</h2>
-      <div class="question-actions">
-        <button id="confirmQuestion" class="confirm-btn">✔️</button>
-        <button id="cancelQuestion" class="cancel-btn">❌</button>
-      </div>
+        <ul id="questionOptions" class="options-list"></ul>
+        <button id="revealAnswerBtn" class="reveal-btn">Revelar respuesta</button>
+    </div>
+  </div>
+
+  <!-- MODAL DE RESPUESTA -->
+  <div id="answerModal" class="modal hidden">
+    <div class="modal-content answer-box">
+      <span class="close-btn" id="closeAnswerModal">&times;</span>
+      <h2>RESPUESTA CORRECTA</h2>
+      <p id="correctAnswerText"></p>
     </div>
   </div>
 
@@ -63,4 +70,3 @@
   <script src="main.js"></script>
 </body>
 </html>
-
