@@ -132,7 +132,7 @@ button#openScoreModal:hover {
   align-items: center;
   cursor: pointer;
   border-radius: 6px;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s, opacity 0.2s;
 }
 
 .cell:hover {
@@ -168,6 +168,18 @@ button#openScoreModal:hover {
   max-width: 400px;
   width: 90%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .hidden {
@@ -182,25 +194,55 @@ button#openScoreModal:hover {
   cursor: pointer;
 }
 
-.score-form label,
+.score-form {
+  text-align: left;
+}
+
+.score-form h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #1f2937;
+  text-align: center;
+}
+
+.score-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+  color: #374151;
+  font-size: 15px;
+}
+
 .score-form select,
 .score-form input {
-  display: block;
-  margin-top: 12px;
   width: 100%;
-  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.score-form select:focus,
+.score-form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .add-score-btn {
   margin-top: 16px;
+  width: 100%;
   background-color: #3b82f6;
   color: white;
   border: none;
-  padding: 10px 16px;
+  padding: 12px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
 }
 
 .add-score-btn:hover {
@@ -213,32 +255,6 @@ button#openScoreModal:hover {
 
 .question-box {
   text-align: center;
-}
-
-.question-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 30px;
-}
-
-.confirm-btn,
-.cancel-btn {
-  font-size: 40px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.confirm-btn:hover {
-  transform: scale(1.1);
-  color: green;
-}
-
-.cancel-btn:hover {
-  transform: scale(1.1);
-  color: red;
 }
 
 /* -------------------------- */
@@ -293,4 +309,10 @@ button#openScoreModal:hover {
   font-size: 24px;
   margin-top: 10px;
   color: #111;
+}
+
+.used-logo {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
 }

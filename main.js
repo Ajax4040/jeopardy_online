@@ -131,7 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
     questionModal.classList.add("hidden");
 
     currentCell.classList.add("used");
+    currentCell.innerHTML = `<img src="image/logo1.png" alt="logo usado" class="used-logo">`;
     currentCell.removeEventListener("click", openQuestionModal);
+
   });
 
 
