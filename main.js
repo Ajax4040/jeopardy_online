@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ===========================
+  //  CONFIGURACIÓN DEL JUEGO
+  // ===========================
+
   const categories = [
     "Categoría 1", "Categoría 2", "Categoría 3",
     "Categoría 4", "Categoría 5", "Categoría 6"
@@ -6,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const points = [100, 200, 300, 400, 500];
 
-  // Preguntas doradas: clave = categoría, valor = fila (basado en index de 0 a 4)
+  // UNA pregunta dorada por categoría (fila 0–4)
+  // Fácil de modificar en el futuro.
   const goldenQuestions = {
     "Categoría 1": 3, // 400 pts
     "Categoría 2": 2, // 300 pts
@@ -15,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Categoría 5": 4  // 500 pts
   };
 
-  // Generar preguntas por categoría
+  // Crear preguntas dinámicamente
   const questions = {};
   categories.forEach(cat => {
     questions[cat] = points.map((pt, idx) => ({
@@ -26,7 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
   });
 
-  // Crear tablero
+  const goldenSound = new Audio("sounds/goldencard.mp3");
+
+  // ===========================
+  //  CREAR TABLERO
+  // ===========================
+
   const board = document.getElementById("gameBoard");
 
   categories.forEach(cat => {
@@ -37,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   points.forEach((point, rowIndex) => {
-    categories.forEach((cat) => {
+    categories.forEach(cat => {
       const cell = document.createElement("div");
       cell.className = "cell";
       cell.innerText = point;
@@ -48,29 +59,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Puntuaciones
+  // ===========================
+  //  PUNTUACIONES
+  // ===========================
+
   const teams = [0, 0, 0, 0, 0];
   const teamsContainer = document.getElementById("teams");
 
   teams.forEach((score, i) => {
     const div = document.createElement("div");
     div.className = "team";
-    div.innerHTML = `<span>Equipo ${i + 1}</span><strong id="score-${i}">${score}</strong>`;
+    div.innerHTML =
+      `<span>Equipo ${i + 1}</span><strong id="score-${i}">${score}</strong>`;
     teamsContainer.appendChild(div);
   });
 
-  // Modales
+  // ===========================
+  //  REFERENCIAS A MODALES
+  // ===========================
+
+  // Modal pregunta
   const questionModal = document.getElementById("questionModal");
   const questionText = document.getElementById("questionText");
   const questionOptions = document.getElementById("questionOptions");
   const revealBtn = document.getElementById("revealAnswerBtn");
   const closeQuestionModal = document.getElementById("closeQuestionModal");
+
+  // Modal respuesta
   const answerModal = document.getElementById("answerModal");
   const correctAnswerText = document.getElementById("correctAnswerText");
   const closeAnswerModal = document.getElementById("closeAnswerModal");
 
+  // Modal tarjeta dorada (nuevo)
+  const goldenCardModal = document.getElementById("goldenCardModal");
+  const continueToGoldenQuestion = document.getElementById("continueToGoldenQuestion");
+  const closeGoldenCardModal = document.getElementById("closeGoldenCardModal");
+
   let currentCell = null;
   let currentQuestion = null;
+
+  // ===========================
+  //  ABRIR MODAL DE PREGUNTA
+  // ===========================
 
   function openQuestionModal(e) {
     const cat = e.currentTarget.dataset.category;
@@ -80,6 +110,18 @@ document.addEventListener("DOMContentLoaded", () => {
     currentCell = e.currentTarget;
     currentQuestion = q;
 
+    // Si es dorada → mostrar el modal especial primero
+    if (q.isGolden) {
+      goldenSound.play();  // Reproduce sonido dorado
+      goldenCardModal.querySelector(".golden-card-box").classList.add("shine-effect");
+      goldenCardModal.classList.remove("hidden");
+    } else {
+      showQuestionModal(q);
+    }
+  }
+
+  // Función modular para mostrar la pregunta
+  function showQuestionModal(q) {
     questionText.innerText = q.text;
 
     questionOptions.innerHTML = "";
@@ -89,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
       questionOptions.appendChild(li);
     });
 
-    // Estilo dorado si es golden
+    // Estilo dorado solo si corresponde
     if (q.isGolden) {
       questionModal.querySelector(".question-box").classList.add("gold");
       revealBtn.classList.add("gold");
@@ -101,28 +143,58 @@ document.addEventListener("DOMContentLoaded", () => {
     questionModal.classList.remove("hidden");
   }
 
+  // ===========================
+  //  CERRAR MODAL PREGUNTA
+  // ===========================
+
   closeQuestionModal.addEventListener("click", () => {
     questionModal.classList.add("hidden");
     currentCell = null;
     currentQuestion = null;
   });
 
+  // ===========================
+  //  CONTINUAR TARJETA DORADA
+  // ===========================
+
+  continueToGoldenQuestion.addEventListener("click", () => {
+    goldenCardModal.classList.add("hidden");
+    showQuestionModal(currentQuestion);
+  });
+
+  closeGoldenCardModal.addEventListener("click", () => {
+    goldenCardModal.classList.add("hidden");
+    currentCell = null;
+    currentQuestion = null;
+  });
+
+  // ===========================
+  //  REVELAR RESPUESTA
+  // ===========================
+
   revealBtn.addEventListener("click", () => {
     correctAnswerText.innerText = currentQuestion.answer;
+
     questionModal.classList.add("hidden");
     answerModal.classList.remove("hidden");
 
-    // Marcar celda usada
+    // Marcar celda como usada
     currentCell.classList.add("used");
+
     if (currentQuestion.isGolden) {
       currentCell.classList.add("gold-cell");
-      currentCell.innerText = ""; // Ocultamos el número
+      currentCell.innerText = "";
     } else {
-      currentCell.innerHTML = `<img src="image/logo1.png" alt="logo usado" class="used-logo">`;
+      currentCell.innerHTML =
+        `<img src="image/logo1.png" alt="logo usado" class="used-logo">`;
     }
 
     currentCell.removeEventListener("click", openQuestionModal);
   });
+
+  // ===========================
+  //  CERRAR MODAL RESPUESTA
+  // ===========================
 
   closeAnswerModal.addEventListener("click", () => {
     answerModal.classList.add("hidden");
@@ -130,7 +202,10 @@ document.addEventListener("DOMContentLoaded", () => {
     currentQuestion = null;
   });
 
-  // Modal puntuación
+  // ===========================
+  //  MODAL DE PUNTUACIÓN
+  // ===========================
+
   const scoreModal = document.getElementById("scoreModal");
   const openScoreModal = document.getElementById("openScoreModal");
   const closeScoreModal = document.getElementById("closeScoreModal");
@@ -154,4 +229,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     scoreModal.classList.add("hidden");
   });
+
 });
