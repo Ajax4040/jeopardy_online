@@ -1,52 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===========================
-  //  CONFIGURACIÓN DEL JUEGO
-  // ===========================
-
   const categories = [
     "Categoría 1", "Categoría 2", "Categoría 3",
     "Categoría 4", "Categoría 5", "Categoría 6"
   ];
 
-
   const points = [100, 200, 300, 400, 500];
 
+  // Preguntas doradas: clave = categoría, valor = fila (basado en index de 0 a 4)
+  const goldenQuestions = {
+    "Categoría 1": 3, // 400 pts
+    "Categoría 2": 2, // 300 pts
+    "Categoría 3": 2, // 300 pts
+    "Categoría 4": 3, // 400 pts
+    "Categoría 5": 4  // 500 pts
+  };
+
+  // Generar preguntas por categoría
   const questions = {};
-  categories.forEach((cat) => {
-    questions[cat] = [
-      {
-        text: `Pregunta 1 de ${cat.toUpperCase()}`,
-        options: ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
-        answer: "Opción 1"
-      },
-      {
-        text: `Pregunta 2 de ${cat.toUpperCase()}`,
-        options: ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
-        answer: "Opción 1"
-      },
-      {
-        text: `Pregunta 3 de ${cat.toUpperCase()}`,
-        options: ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
-        answer: "Opción 1"
-      },
-      {
-        text: `Pregunta 4 de ${cat.toUpperCase()}`,
-        options: ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
-        answer: "Opción 1"
-      },
-      {
-        text: `Pregunta 5 de ${cat.toUpperCase()}`,
-        options: ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
-        answer: "Opción 1"
-      }
-    ];
+  categories.forEach(cat => {
+    questions[cat] = points.map((pt, idx) => ({
+      text: `Pregunta ${idx + 1} de ${cat.toUpperCase()}`,
+      options: ["Opción 1", "Opción 2", "Opción 3", "Opción 4"],
+      answer: "Opción 1",
+      isGolden: goldenQuestions[cat] === idx
+    }));
   });
 
-
-  // ===========================
-  //  CREAR TABLERO
-  // ===========================
-
+  // Crear tablero
   const board = document.getElementById("gameBoard");
 
   categories.forEach(cat => {
@@ -68,11 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
-  // ===========================
-  //  PUNTUACIONES
-  // ===========================
-
+  // Puntuaciones
   const teams = [0, 0, 0, 0, 0];
   const teamsContainer = document.getElementById("teams");
 
@@ -83,74 +59,78 @@ document.addEventListener("DOMContentLoaded", () => {
     teamsContainer.appendChild(div);
   });
 
-
-  // ===========================
-  //  MODAL DE PREGUNTAS
-  // ===========================
-
+  // Modales
   const questionModal = document.getElementById("questionModal");
   const questionText = document.getElementById("questionText");
-  const closeQuestionModal = document.getElementById("closeQuestionModal");
+  const questionOptions = document.getElementById("questionOptions");
   const revealBtn = document.getElementById("revealAnswerBtn");
+  const closeQuestionModal = document.getElementById("closeQuestionModal");
+  const answerModal = document.getElementById("answerModal");
+  const correctAnswerText = document.getElementById("correctAnswerText");
+  const closeAnswerModal = document.getElementById("closeAnswerModal");
+
   let currentCell = null;
+  let currentQuestion = null;
 
   function openQuestionModal(e) {
     const cat = e.currentTarget.dataset.category;
     const row = parseInt(e.currentTarget.dataset.row);
+    const q = questions[cat][row];
 
-    const q = questions[cat]?.[row];
-    if (!q) return;
+    currentCell = e.currentTarget;
+    currentQuestion = q;
 
     questionText.innerText = q.text;
 
-    const list = document.getElementById("questionOptions");
-    list.innerHTML = "";
+    questionOptions.innerHTML = "";
     q.options.forEach(op => {
       const li = document.createElement("li");
       li.innerText = op;
-      list.appendChild(li);
+      questionOptions.appendChild(li);
     });
 
-    currentCell = e.currentTarget;
+    // Estilo dorado si es golden
+    if (q.isGolden) {
+      questionModal.querySelector(".question-box").classList.add("gold");
+      revealBtn.classList.add("gold");
+    } else {
+      questionModal.querySelector(".question-box").classList.remove("gold");
+      revealBtn.classList.remove("gold");
+    }
+
     questionModal.classList.remove("hidden");
   }
 
   closeQuestionModal.addEventListener("click", () => {
-    currentCell = null;
     questionModal.classList.add("hidden");
+    currentCell = null;
+    currentQuestion = null;
   });
 
   revealBtn.addEventListener("click", () => {
-    const cat = currentCell.dataset.category;
-    const row = parseInt(currentCell.dataset.row);
-    const q = questions[cat][row];
-
-    document.getElementById("correctAnswerText").innerText = q.answer;
-    document.getElementById("answerModal").classList.remove("hidden");
-
+    correctAnswerText.innerText = currentQuestion.answer;
     questionModal.classList.add("hidden");
+    answerModal.classList.remove("hidden");
 
+    // Marcar celda usada
     currentCell.classList.add("used");
-    currentCell.innerHTML = `<img src="image/logo1.png" alt="logo usado" class="used-logo">`;
+    if (currentQuestion.isGolden) {
+      currentCell.classList.add("gold-cell");
+      currentCell.innerText = ""; // Ocultamos el número
+    } else {
+      currentCell.innerHTML = `<img src="image/logo1.png" alt="logo usado" class="used-logo">`;
+    }
+
     currentCell.removeEventListener("click", openQuestionModal);
-
   });
 
-
-  // ===========================
-  //  MODAL DE RESPUESTA
-  // ===========================
-
-  document.getElementById("closeAnswerModal").addEventListener("click", () => {
-    document.getElementById("answerModal").classList.add("hidden");
+  closeAnswerModal.addEventListener("click", () => {
+    answerModal.classList.add("hidden");
     currentCell = null;
+    currentQuestion = null;
   });
 
-
-  // ===========================
-  //  MODAL DE PUNTUACIÓN
-  // ===========================
-
+  // Modal puntuación
   const scoreModal = document.getElementById("scoreModal");
   const openScoreModal = document.getElementById("openScoreModal");
   const closeScoreModal = document.getElementById("closeScoreModal");
