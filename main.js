@@ -115,6 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
       goldenSound.play();  // Reproduce sonido dorado
       goldenCardModal.querySelector(".golden-card-box").classList.add("shine-effect");
       goldenCardModal.classList.remove("hidden");
+      goldenCardModal.querySelector(".modal-content").classList.add("golden-zoom-in");
+
     } else {
       showQuestionModal(q);
     }
@@ -163,10 +165,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   closeGoldenCardModal.addEventListener("click", () => {
-    goldenCardModal.classList.add("hidden");
-    currentCell = null;
-    currentQuestion = null;
+  goldenCardModal.classList.add("hidden");
+  goldenCardModal.querySelector(".modal-content").classList.remove("golden-zoom-in");
+  currentCell = null;
+  currentQuestion = null;
   });
+
 
   // ===========================
   //  REVELAR RESPUESTA
