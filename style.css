@@ -112,13 +112,13 @@ button#openScoreModal:hover {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(5, 150px); /* ancho de columnas */
-  grid-template-rows: repeat(6, 100px);    /* alto de filas */
-  gap: 10px;
+  grid-template-columns: repeat(5, 200px); /* Aumentado el ancho */
+  grid-template-rows: repeat(6, 120px);    /* Aumentada la altura */
+  gap: 12px;
   background-color: #1e3a8a;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -126,7 +126,7 @@ button#openScoreModal:hover {
   background-color: #3b82f6;
   color: white;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,7 +141,13 @@ button#openScoreModal:hover {
 
 .header {
   background-color: #1d4ed8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 5px; /* opcional: agrega margen interno horizontal para palabras largas */
 }
+
 
 /* -------------------------- */
 /* MODALES */
@@ -162,12 +168,12 @@ button#openScoreModal:hover {
 
 .modal-content {
   background-color: white;
-  padding: 30px;
-  border-radius: 10px;
+  padding: 40px;
+  border-radius: 12px;
   position: relative;
-  max-width: 400px;
+  max-width: 700px;
   width: 90%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.2s ease-out;
 }
 
@@ -255,6 +261,7 @@ button#openScoreModal:hover {
 
 .question-box {
   text-align: center;
+  font-size: 24px;
 }
 
 /* -------------------------- */
@@ -273,8 +280,9 @@ button#openScoreModal:hover {
   list-style: disc;
   margin: 20px auto;
   text-align: left;
-  width: 80%;
-  font-size: 18px;
+  width: 90%;
+  font-size: 22px;
+  line-height: 1.6;
 }
 
 /* Botón de revelar */
@@ -282,11 +290,11 @@ button#openScoreModal:hover {
   background-color: #60a5fa;
   color: white;
   border: none;
-  padding: 12px 20px;
+  padding: 16px 28px;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
-  margin-top: 15px;
+  margin-top: 20px;
   display: inline-block;
   transition: background .2s ease;
 }
@@ -301,13 +309,14 @@ button#openScoreModal:hover {
 
 .answer-box {
   text-align: center;
-  font-size: 20px;
+  font-size: 26px;
+  padding: 20px;
 }
 
 #correctAnswerText {
   font-weight: bold;
-  font-size: 24px;
-  margin-top: 10px;
+  font-size: 32px;
+  margin-top: 20px;
   color: #111;
 }
 
@@ -333,7 +342,10 @@ button#openScoreModal:hover {
   background-color: #fbbf24;
   color: #1f2937;
   font-weight: bold;
+  font-size: 22px;
+  padding: 14px 24px;
 }
+
 
 .reveal-btn.gold:hover {
   background-color: #f59e0b;
@@ -354,14 +366,14 @@ button#openScoreModal:hover {
 .golden-card-box {
   background: linear-gradient(to bottom, #fff8dc, #fff);
   border: 4px solid gold;
-  border-radius: 12px;
-  padding: 50px;
-  max-width: 600px;
+  border-radius: 16px;
+  padding: 60px;
+  max-width: 680px;
   width: 100%;
   text-align: center;
   position: relative;
   animation: fadeIn 0.3s ease-out;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: bold;
   color: #b7791f;
   box-shadow: 0 0 20px gold;
@@ -369,7 +381,7 @@ button#openScoreModal:hover {
 
 
 .golden-title {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: bold;
   color: #b45309;
   margin-bottom: 30px;
@@ -395,12 +407,12 @@ button#openScoreModal:hover {
 
 .golden-meme-img {
   max-width: 100%;
-  max-height: 250px;
-  margin: 20px auto;
+  max-height: 350px;
+  margin: 30px auto;
   display: block;
-  border-radius: 8px;
+  border-radius: 12px;
   object-fit: cover;
-  box-shadow: 0 0 10px rgba(255, 200, 0, 0.5);
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.6);
   animation: glow 2s infinite alternate;
 }
 
