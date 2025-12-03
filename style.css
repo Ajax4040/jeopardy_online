@@ -112,7 +112,7 @@ button#openScoreModal:hover {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(6, 150px); /* ancho de columnas */
+  grid-template-columns: repeat(5, 150px); /* ancho de columnas */
   grid-template-rows: repeat(6, 100px);    /* alto de filas */
   gap: 10px;
   background-color: #1e3a8a;

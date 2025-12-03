@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const categories = [
     "Categoría 1", "Categoría 2", "Categoría 3",
-    "Categoría 4", "Categoría 5", "Categoría 6"
+    "Categoría 4", "Categoría 5"
   ];
 
   const points = [100, 200, 300, 400, 500];
