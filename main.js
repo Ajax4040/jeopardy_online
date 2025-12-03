@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const questions = {
     "ACTUALIDAD": [
       {
-        "text": "Ya están a la venta las entradas, pero ¿Cuándo es el Lollapalooza 2026?",
+        "text": "Ya están a la venta las entradas del Lollapalooza 2026. ¿En que fecha es?",
         "options": [
           "1) 13 al 15 de Marzo",
           "2) 20 al 22 de Marzo",
@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         "text": "¿Cuál fue la APP más descargada en el mundo en 2025?",
         "options": [
-          "1) Temu",
+          "1) Chat GPT",
           "2) Roblox",
-          "3) Facebook"
+          "3) Tiktok"
         ],
-        "answer": "a chequear",
+        "answer": "1) Chat GPT",
         "isGolden": false
       },
       {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "2) Rosa Santillán",
           "3) Leonor Martínez Bisso"
         ],
-        "answer": "1 Cecilia Grierson",
+        "answer": "1) Cecilia Grierson",
         "isGolden": false
       },
       {
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
           "2) 96",
           "3) 98"
         ],
-        "answer": "3) 96",
+        "answer": "3) 98",
         "isGolden": false
       },
       {
@@ -241,11 +241,11 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         "text": "Además de tener productos para rutina (Etapa 1, 2 y 3), SanCor Bebé tiene productos especiales, ¿en cuáles segmentos?",
         "options": [
-          "1) AR / COMFORT",
-          "2) PREMATUROS / AR",
-          "3) AR / PREMATUROS / COMFORT / HA"
+          "1) AR/COMFORT",
+          "2) PREMATUROS/AR/HA",
+          "3) AR/PREMATUROS/COMFORT/HA/REDUCIDA LACTOSA"
         ],
-        "answer": "3) AR / PREMATUROS / COMFORT / HA",
+        "answer": "3) AR/PREMATUROS/COMFORT/HA/REDUCIDA LACTOSA",
         "isGolden": false
       },
       {
