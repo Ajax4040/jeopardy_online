@@ -442,3 +442,24 @@ button#openScoreModal:hover {
   animation: goldenZoomIn 0.6s ease-out forwards;
 }
 /* -------------------------- */
+
+.winner-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease;
+  z-index: 999;
+}
+
+.winner-button:hover {
+  background-color: #16a34a;
+}

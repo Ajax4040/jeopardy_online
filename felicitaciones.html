@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Felicitaciones!</title>
+  <style>
+    /* Fondo animado de fiesta */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #ffcc00, #ff7b00, #ff1474, #a855f7, #3b82f6);
+      background-size: 500% 500%;
+      animation: bgAnimation 10s infinite alternate;
+      font-family: "Segoe UI", sans-serif;
+      position: relative;
+    }
+
+    @keyframes bgAnimation {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    /* Texto principal con efecto glow y animación */
+    .message {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      font-size: 80px;
+      font-weight: 900;
+      color: white;
+      text-shadow: 0 0 15px rgba(255,255,255,0.8), 
+                   0 0 25px rgba(255,255,255,0.6),
+                   0 0 35px rgba(255,255,255,0.4);
+      animation: popIn 1.5s ease-out, glowPulse 2.5s infinite ease-in-out;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.2); opacity: 0; }
+      80% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 15px rgba(255,255,255,1); }
+      50% { text-shadow: 0 0 35px rgba(255,255,255,1), 0 0 60px rgba(255,200,0,0.9); }
+    }
+
+    /* Confeti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      animation: fall linear infinite;
+      opacity: 0.9;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message">¡FELICITACIONES EQUIPO GANADOR!!!</div>
+
+  <script>
+    /* Cambiá este nombre del equipo */
+    const equipoGanador = localStorage.getItem("equipoGanador") || "EQUIPO GANADOR";
+    document.querySelector('.message').innerText = `¡FELICITACIONES ${equipoGanador}!!!`;
+
+    /* Confeti mejorado */
+    const colors = ["#ff0000", "#ff7f00", "#ffee00", "#00cc44", "#0099ff", "#7733ff", "#ff33bb"];
+    
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+
+      // Posición horizontal aleatoria
+      confetti.style.left = Math.random() * 100 + "vw";
+
+      // Tamaños distintos
+      const size = Math.random() * 12 + 6;
+      confetti.style.width = size + "px";
+      confetti.style.height = size + "px";
+
+      // Colores diferentes
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      // Animación aleatoria
+      confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+      // Forma aleatoria
+      if (Math.random() > 0.6) confetti.style.borderRadius = "50%";
+
+      // Rotación inicial
+      confetti.style.transform = `rotate(${Math.random()*360}deg)`;
+
+      document.body.appendChild(confetti);
+
+      // Eliminar después de caer
+      setTimeout(() => confetti.remove(), 5000);
+    }
+
+    // Crear un montón al inicio
+    for (let i = 0; i < 150; i++) {
+      setTimeout(createConfetti, i * 20);
+    }
+
+    // Y seguir generando
+    setInterval(createConfetti, 120);
+  </script>
+
+</body>
+</html>

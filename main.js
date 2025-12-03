@@ -451,4 +451,27 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreModal.classList.add("hidden");
   });
 
+  const winnerBtn = document.getElementById("winnerBtn");
+
+  winnerBtn.addEventListener("click", () => {
+    let maxPoints = -Infinity;
+    let winnerIndex = 0;
+
+    teams.forEach((points, index) => {
+      if (points > maxPoints) {
+        maxPoints = points;
+        winnerIndex = index;
+      }
+    });
+
+    const nombreEquipo = `EQUIPO ${winnerIndex + 1}`;
+    
+    // Guardar el nombre del equipo en localStorage
+    localStorage.setItem("equipoGanador", nombreEquipo);
+
+    // Ir a la página de felicitaciones
+    window.location.href = "felicitaciones.html";
+});
+
+
 });
