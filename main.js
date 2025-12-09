@@ -7,16 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const questions = {
     "ACTUALIDAD": [
       {
-        "text": "Ya están a la venta las entradas del Lollapalooza 2026. ¿En que fecha es?",
-        "options": [
-          "1) 13 al 15 de Marzo",
-          "2) 20 al 22 de Marzo",
-          "3) 13 al 15 de Abril"
-        ],
-        "answer": "1) 13 al 15 de Marzo",
-        "isGolden": false
-      },
-      {
         "text": "¿Cuál fue la APP más descargada en el mundo en 2025?",
         "options": [
           "1) Chat GPT",
@@ -24,6 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
           "3) Tiktok"
         ],
         "answer": "1) Chat GPT",
+        "isGolden": false
+      },
+      {
+        "text": "La semana pasada de inauguró una nueva ruta aérea que conecta Argentina con otro país en un vuelo de más de 20 hrs. ¿De que país estamos hablando?",
+        "options": [
+          "1) Korea del sur",
+          "2) Japon",
+          "3) China"
+        ],
+        "answer": "3) China",
         "isGolden": false
       },
       {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     ],
 
-    "DÍA DEL MEDICO": [
+    "MEDICO": [
       {
         "text": "¿Quién fue la primera médica Argentina?",
         "options": [
@@ -80,13 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "isGolden": false
       },
       {
-        "text": "¿Entre qué calles está la manzana del Hospital Gutierrez (Niños)?",
+        "text": "¿Entre que calles está la manzana del Hospital de Niños Victor J. Vilela?",
         "options": [
-          "1) Bustamante/Paraguay/Gallo/Mansilla",
-          "2) Billinghurst/Paraguay/Callao/Mansilla",
-          "3) Billinghurst/Paraguay/Agüero/Mansilla"
+          "1) Virasoro/Moreno/Rueda/Italia",
+          "2) Virasoro/Dorrego/Rueda/Italia",
+          "3) Virasoro/Dorrego/Rueda/España"
         ],
-        "answer": "1) Bustamante/Paraguay/Gallo/Mansilla",
+        "answer": "2) Virasoro/Dorrego/Rueda/Italia",
         "isGolden": true
       },
       {
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "isGolden": false
       },
       {
-        "text": "¿Qué periodista es también médico?",
+        "text": "¿Qué periodista es también médico de profesión?",
         "options": [
           "1) Eduardo Feinmann",
           "2) Nelson Castro",
@@ -123,13 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "isGolden": false
       },
       {
-        "text": "¿Cuál es la siguiente carrera que corre Franco Colapinto?",
+        "text": "¿Cuáles son los 3 equipos del grupo de Argentina en el mundial de Fútbol 2026?",
         "options": [
-          "1) Abu Dhabi",
-          "2) Qatar",
-          "3) Mónaco"
+          "1) Austria/Argelia/Arabia Saudita",
+          "2) Austria/Argelia/Jordania",
+          "3) Austria/Marruecos/Jordania"
         ],
-        "answer": "1) Abu Dhabi",
+        "answer": "1) Austria/Argelia/Jordania",
         "isGolden": false
       },
       {
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     "ETHICAL NUTRITION": [
       {
-        "text": "La muy conocida y muy cantada canción de SanCor Bebé… \"¿Qué tiene SanCor Bebé…?\" ¿qué etapa menciona en su guión?",
+        "text": "La conocida y muy cantada canción de SanCor Bebé… \"¿Qué tiene SanCor Bebé…?\" ¿qué etapa menciona en su guión?",
         "options": [
           "1) Etapa 1",
           "2) Etapa 2",
